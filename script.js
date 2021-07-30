@@ -28,7 +28,8 @@ function startGame(){
 function turnClick(square){
     if(typeof orignalBoard[square.target.id] == 'number'){
         turn(square.target.id, humanPlayer);
-        if(!checkTie()) turn(bestSpot(), aiPlayer);
+        if(!checkWin(orignalBoard, humanPlayer) && !checkTie()) 
+        turn(bestSpot(), aiPlayer);
     }
 }
 
@@ -41,7 +42,7 @@ function turn(sqaureID, player){
 
 function checkWin(board, player){
     let plays = board.reduce((a, e, i) => 
-        (e === player) ? a.concat(i) : a, []);
+        (e == player) ? a.concat(i) : a, []);
     let gameWon = null;
     for(let [index, win] of winningCombos.entries()){
         if(win.every(element => plays.indexOf(element) > -1)){
@@ -89,13 +90,13 @@ function checkTie(){
 function minimax(newBoard, player){
     var availSpots = emptySquares(newBoard);
 
-    if(checkWin(newBoard, player)){
+    if(checkWin(newBoard, humanPlayer)){
         return {score: -10};
     } 
     else if(checkWin(newBoard, aiPlayer)){
-        return {score: 20};
+        return {score: 10};
     }
-    else if(availSpots.length === 0){
+    else if(availSpots.length == 0){
         return {score: 0};
     }
     var moves = [];
@@ -118,7 +119,7 @@ function minimax(newBoard, player){
     }
 
     var bestMove;
-    if(player === aiPlayer){
+    if(player == aiPlayer){
         var bestScore = -10000;
         for(var i=0; i < moves.length; i++){
             if(moves[i].score > bestScore){
