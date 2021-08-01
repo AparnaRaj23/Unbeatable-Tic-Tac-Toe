@@ -5,7 +5,6 @@ This specific Tic-Tac-Toe however is AI based and is an unbeatable one! It uses 
 
 At the same time, the algorithm evaluates the moves that lead to a terminal state based on the players’ turn. It will choose the move with maximum score when it is the AI’s turn and choose the move with the minimum score when it is the human player’s turn. Using this strategy, Minimax avoids AI losing to the human player.
 
-### Deployment
+# Deployment
 Deployed Website: https://aparnaraj23.github.io/Unbeatable-Tic-Tac-Toe/
-
 ![](screenshot.PNG)
